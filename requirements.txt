@@ -1,0 +1,13 @@
+pandas
+numpy
+scipy
+scikit-learn
+requests
+flask
+tqdm
+matplotlib
+seaborn
+
+torch
+torchvision
+torchaudio
