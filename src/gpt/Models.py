@@ -9,6 +9,7 @@ class CustomModel(torch.nn.Module):
     
     @torch.no_grad()
     def generate(self, context, max_characters=10, max_block_size=8, d="cpu"):
+        self.eval()
         context = torch.tensor([context.tolist()], device=d)
         for _ in range(max_characters):
             input = context[:, -max_block_size:]
@@ -17,7 +18,7 @@ class CustomModel(torch.nn.Module):
             probs = F.softmax(logits, dim=-1)
             ix = torch.multinomial(probs, num_samples=1).to(d)
             context = torch.cat((context, ix), dim=1).to(d)
-        
+        self.train()
         return context.squeeze().tolist()
 
 
