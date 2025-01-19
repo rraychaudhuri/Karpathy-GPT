@@ -38,7 +38,7 @@ class SelfAttentionHead(torch.nn.Module):
 
         # Only talk to previous tokens in the batch
         wei = wei.masked_fill(self.tril == 0, float("-inf"))    # (B, T, T)
-        wei = F.softmax(wei, dim=1)                             # (B, T, T)
+        wei = F.softmax(wei, dim=-1)                             # (B, T, T)
 
         out = wei @ v       # (B, T, T) * (B, T, head_size) = (B, T, head_size)
         return out
