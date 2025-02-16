@@ -11,3 +11,4 @@ seaborn
 torch
 torchvision
 torchaudio
+transformers[torch]
